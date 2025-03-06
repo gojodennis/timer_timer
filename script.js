@@ -39,18 +39,25 @@ class TimeTimer {
     }
 
     setupEventListeners() {
-        this.startBtn.addEventListener('click', () => this.toggleTimer());
-        this.resetBtn.addEventListener('click', () => this.resetTimer());
+        const addTouchAndClickHandler = (element, handler) => {
+            element.addEventListener('click', handler);
+            element.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                handler(e);
+            }, { passive: false });
+        };
+
+        addTouchAndClickHandler(this.startBtn, () => this.toggleTimer());
+        addTouchAndClickHandler(this.resetBtn, () => this.resetTimer());
     }
 
     setupColorButtons() {
         this.colorButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
+            addTouchAndClickHandler(button, () => {
                 const color = button.dataset.color;
                 document.body.classList.remove('color-1', 'color-2', 'color-3', 'color-4', 'color-5');
                 document.body.classList.add(`color-${index + 1}`);
                 
-                // Set CSS variables for dynamic colors
                 document.documentElement.style.setProperty('--accent-color', `${color}E6`);
                 document.documentElement.style.setProperty('--accent-color-transparent', `${color}99`);
                 document.documentElement.style.setProperty('--accent-color-hover', color);
