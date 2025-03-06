@@ -39,52 +39,18 @@ class TimeTimer {
     }
 
     setupEventListeners() {
-        const addTouchAndClickHandler = (element, handler) => {
-            let touchStartTime;
-            let touchStartX;
-            let touchStartY;
-            
-            element.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                touchStartTime = Date.now();
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            }, { passive: false });
-            
-            element.addEventListener('touchend', (e) => {
-                const touchEndTime = Date.now();
-                const touchEndX = e.changedTouches[0].clientX;
-                const touchEndY = e.changedTouches[0].clientY;
-                
-                const touchDuration = touchEndTime - touchStartTime;
-                const touchDistance = Math.sqrt(
-                    Math.pow(touchEndX - touchStartX, 2) + 
-                    Math.pow(touchEndY - touchStartY, 2)
-                );
-                
-                if (touchDuration < 500 && touchDistance < 10) {
-                    handler(e);
-                }
-            });
-            
-            element.addEventListener('click', handler);
-        };
-    addTouchAndClickHandler(this.startBtn, () => this.toggleTimer());
-    addTouchAndClickHandler(this.resetBtn, () => this.resetTimer());
-    
-    // Prevent double-tap zoom
-    document.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        e.target.click();
-    }, { passive: false });
-}
+        this.startBtn.addEventListener('click', () => this.toggleTimer());
+        this.resetBtn.addEventListener('click', () => this.resetTimer());
+    }
+
     setupColorButtons() {
         this.colorButtons.forEach((button, index) => {
-            addTouchAndClickHandler(button, () => {
+            button.addEventListener('click', () => {
                 const color = button.dataset.color;
                 document.body.classList.remove('color-1', 'color-2', 'color-3', 'color-4', 'color-5');
                 document.body.classList.add(`color-${index + 1}`);
                 
+                // Set CSS variables for dynamic colors
                 document.documentElement.style.setProperty('--accent-color', `${color}E6`);
                 document.documentElement.style.setProperty('--accent-color-transparent', `${color}99`);
                 document.documentElement.style.setProperty('--accent-color-hover', color);
