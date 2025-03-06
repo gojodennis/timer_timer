@@ -80,27 +80,53 @@ body {
     display: flex;
     flex-direction: column;
     gap: 16px;
-}
-
-.mode-selector select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 16px;
+    position: relative;
+    z-index: 20;
 }
 
 .time-inputs input {
-    width: 100%;
-    padding: 12px;
+    width: 120px;
+    height: 40px;
+    padding: 8px 12px;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: white;
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
+}
+
+.mode-selector select {
+    width: 200px;
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 15px;
+}
+
+/* Pomodoro inputs specific styling */
+.pomodoro-input {
+    display: flex;
+    gap: 8px;
+}
+
+.pomodoro-input input {
+    width: 96px;
+    height: 40px;
+}
+
+@media screen and (max-width: 480px) {
+    .time-inputs input,
+    .mode-selector select {
+        font-size: 14px;
+    }
+    
+    .pomodoro-input input {
+        width: 90px;
+    }
 }
 
 /* Button styling */
