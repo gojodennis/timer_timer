@@ -16,52 +16,45 @@ body {
 
 /* Container styles */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 40px;
-    position: relative;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .content-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
-    min-height: 100vh;
-    padding: 40px;
-    position: relative;
-}
-
-.content-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
+    padding: 20px;
+    min-height: auto;
 }
 
 /* Section styles */
 .timer-section, .controls-section {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    width: 380px;
-    height: 420px;
-    padding: 35px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    min-height: 420px;
+    padding: 20px;
 }
 
-/* Canvas */
-canvas {
-    width: 100%;
-    height: auto;
-    max-width: 400px; /* Optional: Limit the maximum size */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .content-wrapper {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .timer-section, .controls-section {
+        padding: 15px;
+        min-height: auto;
+    }
 }
 {
     width: 320px;
@@ -70,7 +63,15 @@ canvas {
 
 /* Title styles */
 .main-title {
-    font-size: 48px;
+    font-size: clamp(24px, 5vw, 48px);
+    margin-bottom: clamp(20px, 4vw, 40px);
+}
+
+@media screen and (max-width: 480px) {
+    .main-title {
+        margin-bottom: 20px;
+    }
+}
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
     text-align: center;
@@ -128,11 +129,17 @@ canvas {
 
 @media screen and (max-width: 480px) {
     #startBtn, #resetBtn {
-        min-width: 100px;
-        padding: 12px 20px;
+        width: 100%;
+        max-width: 160px;
+        padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+        font-size: clamp(12px, 2vw, 14px);
     }
-
+    
     .color-presets {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: clamp(5px, 1vw, 10px);
         padding: 5px;
     }
 
@@ -152,7 +159,27 @@ canvas {
 
 /* Input styles */
 .time-inputs input, .mode-selector select {
-    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 180px;
+    padding: 10px 15px;
+    font-size: clamp(14px, 2vw, 15px);
+}
+
+.mode-selector select {
+    width: 100%;
+    max-width: 200px;
+}
+
+@media screen and (max-width: 480px) {
+    .time-inputs input, .mode-selector select {
+        padding: 8px 12px;
+    }
+
+    .time-display {
+        font-size: clamp(16px, 4vw, 24px);
+    }
+}
+background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -373,4 +400,16 @@ body::after {
 }
 .color-btn {
     pointer-events: auto; /* Ensure buttons are clickable */
+}
+canvas {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+@media screen and (max-width: 480px) {
+    canvas {
+        max-width: 240px;
+    }
 }
