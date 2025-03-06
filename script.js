@@ -31,6 +31,8 @@ class TimeTimer {
         this.setupEventListeners();
         this.setupColorButtons();
         this.drawTimer();
+        this.resizeContainers(); // Adjust containers on load
+        window.addEventListener('resize', () => this.resizeContainers()); // Adjust containers on resize
     }
 
     setupCanvas() {
@@ -245,6 +247,32 @@ class TimeTimer {
             this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
             this.ctx.fillText(i.toString(), x, y);
         }
+    }
+
+    resizeContainers() {
+        const isMobile = window.innerWidth <= 480;
+
+        // Adjust canvas size
+        this.canvas.width = isMobile ? 240 : 300;
+        this.canvas.height = isMobile ? 240 : 300;
+
+        // Adjust container dimensions
+        const timerSection = document.querySelector('.timer-section');
+        const controlsSection = document.querySelector('.controls-section');
+
+        if (isMobile) {
+            timerSection.style.width = '90%';
+            timerSection.style.height = 'auto';
+            controlsSection.style.width = '90%';
+            controlsSection.style.height = 'auto';
+        } else {
+            timerSection.style.width = '380px';
+            timerSection.style.height = '420px';
+            controlsSection.style.width = '380px';
+            controlsSection.style.height = '420px';
+        }
+
+        this.drawTimer(); // Redraw the timer to fit the new canvas size
     }
 }
 

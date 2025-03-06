@@ -367,3 +367,10 @@ body::after {
     bottom: -300px;
     right: -200px;
 }
+.color-btn {
+    position: relative;
+    z-index: 10; /* Ensure buttons are above other elements */
+}
+.color-btn {
+    pointer-events: auto; /* Ensure buttons are clickable */
+}
