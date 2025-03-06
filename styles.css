@@ -14,77 +14,124 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Container styles */
+/* Container adjustments */
 .container {
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-    min-height: 100vh;
-    margin: 0 auto;
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
 .content-wrapper {
-    flex: 1;
+    width: 100%;
+    max-width: 480px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 10px;
+    align-items: center;
+    gap: 32px;
 }
 
+/* Timer section */
 .timer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.canvas-container {
+    width: 85vw;
+    max-width: 320px;
+    aspect-ratio: 1;
+}
+
+.time-display {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+/* Controls section */
+.controls-section {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
 }
 
-.canvas-container {
-    width: 100%;
-    max-width: 300px;
-    aspect-ratio: 1;
+/* Mode selector and inputs */
+.mode-selector select {
+    width: 240px;
+    height: 48px;
+    font-size: 16px;
 }
 
-.controls-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 380px;
+.time-inputs input {
+    width: 120px;
+    height: 48px;
+    font-size: 20px;
 }
 
+/* Buttons */
 .button-group {
+    width: 100%;
     display: flex;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
+    margin: 8px 0;
 }
 
-/* Media queries for different orientations */
+#startBtn, #resetBtn {
+    min-width: 120px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Color presets */
+.color-presets {
+    display: flex;
+    gap: 16px;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.color-btn {
+    width: 32px;
+    height: 32px;
+}
+
+/* Portrait-specific adjustments */
+@media screen and (orientation: portrait) {
+    .main-title {
+        font-size: 32px;
+        margin: 16px 0;
+    }
+
+    .content-wrapper {
+        gap: 24px;
+    }
+
+    .controls-section {
+        margin-top: -8px;
+    }
+}
+
+/* Landscape adjustments for larger screens */
 @media screen and (orientation: landscape) and (min-width: 768px) {
     .content-wrapper {
         flex-direction: row;
-        justify-content: center;
+        max-width: 900px;
         align-items: flex-start;
     }
-}
 
-@media screen and (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-
-    .main-title {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .canvas-container {
-        max-width: 240px;
-    }
-
-    .time-display {
-        font-size: 24px;
+    .timer-section, .controls-section {
+        flex: 1;
     }
 }
 {
