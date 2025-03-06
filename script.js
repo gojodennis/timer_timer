@@ -40,17 +40,44 @@ class TimeTimer {
 
     setupEventListeners() {
         const addTouchAndClickHandler = (element, handler) => {
-            element.addEventListener('click', handler);
+            let touchStartTime;
+            let touchStartX;
+            let touchStartY;
+            
             element.addEventListener('touchstart', (e) => {
                 e.preventDefault();
-                handler(e);
+                touchStartTime = Date.now();
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
             }, { passive: false });
+            
+            element.addEventListener('touchend', (e) => {
+                const touchEndTime = Date.now();
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                
+                const touchDuration = touchEndTime - touchStartTime;
+                const touchDistance = Math.sqrt(
+                    Math.pow(touchEndX - touchStartX, 2) + 
+                    Math.pow(touchEndY - touchStartY, 2)
+                );
+                
+                if (touchDuration < 500 && touchDistance < 10) {
+                    handler(e);
+                }
+            });
+            
+            element.addEventListener('click', handler);
         };
-
-        addTouchAndClickHandler(this.startBtn, () => this.toggleTimer());
-        addTouchAndClickHandler(this.resetBtn, () => this.resetTimer());
-    }
-
+    addTouchAndClickHandler(this.startBtn, () => this.toggleTimer());
+    addTouchAndClickHandler(this.resetBtn, () => this.resetTimer());
+    
+    // Prevent double-tap zoom
+    document.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        e.target.click();
+    }, { passive: false });
+}
     setupColorButtons() {
         this.colorButtons.forEach((button, index) => {
             addTouchAndClickHandler(button, () => {
