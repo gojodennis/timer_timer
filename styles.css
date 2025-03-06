@@ -41,15 +41,96 @@ body {
     gap: 24px;
 }
 
-.canvas-container {
-    width: 85vw;
+.timer-controls {
+    width: 100%;
     max-width: 320px;
-    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.time-display-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
 }
 
 .time-display {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.button-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* Input group styling */
+.input-group {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mode-selector select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+}
+
+.time-inputs input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Button styling */
+#startBtn, #resetBtn {
+    flex: 1;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 16px;
+    }
+
+    .content-wrapper {
+        gap: 24px;
+    }
+
+    .input-group {
+        padding: 12px;
+    }
+
+    .time-display {
+        font-size: 32px;
+    }
 }
 
 /* Controls section */
