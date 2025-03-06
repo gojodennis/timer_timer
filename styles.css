@@ -1,81 +1,31 @@
-/* Base mobile-first styles */
-* {
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-}
-
+/* Base styles */
 body {
     margin: 0;
-    padding: 0;
     min-height: 100vh;
-    min-height: -webkit-fill-available;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-}
-
-.container {
-    padding: 15px;
-    width: 100%;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-}
-
-.content-wrapper {
-    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-bottom: env(safe-area-inset-bottom);
-}
-
-.timer-section, .controls-section {
-    width: 100%;
-    max-width: 380px;
-    margin: 0 auto;
-    height: auto;
-    min-height: 380px;
-    padding: 20px;
-}
-
-/* Adjust for larger screens */
-@media screen and (min-width: 768px) {
-    .content-wrapper {
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 40px;
-    }
-
-    .timer-section, .controls-section {
-        width: 380px;
-    }
-}
-
-/* Fix touch inputs */
-input[type="number"] {
-    -webkit-appearance: none;
-    margin: 0;
-    -moz-appearance: textfield;
-}
-
-.mode-selector select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-/* Fix iOS notch */
-@supports (padding: max(0px)) {
-    .container {
-        padding-left: max(15px, env(safe-area-inset-left));
-        padding-right: max(15px, env(safe-area-inset-right));
-        padding-top: max(15px, env(safe-area-inset-top));
-        padding-bottom: max(15px, env(safe-area-inset-bottom));
-    }
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(125deg, #000000, #1a1a1a);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    color: #ffffff;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: background 0.5s ease;
 }
 
 /* Container styles */
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px;
+    position: relative;
+}
+
+.content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,6 +59,11 @@ input[type="number"] {
 
 /* Canvas */
 canvas {
+    width: 100%;
+    height: auto;
+    max-width: 400px; /* Optional: Limit the maximum size */
+}
+{
     width: 320px;
     height: 320px;
 }
@@ -186,7 +141,6 @@ canvas {
         height: clamp(18px, 3.5vw, 24px);
     }
 }
-
 #resetBtn {
     background: rgba(0, 113, 227, 0.6);
 }
@@ -233,10 +187,6 @@ canvas {
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     width: 180px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding-right: 40px;
 }
 
 .mode-selector select:hover {
@@ -250,6 +200,12 @@ canvas {
     color: white;
     padding: 12px;
     font-size: 14px;
+}
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 40px;
+    cursor: pointer;
 }
 
 .mode-selector::after {
@@ -271,12 +227,10 @@ canvas {
 }
 
 .color-btn {
-    width: clamp(20px, 4vw, 28px);
-    height: clamp(20px, 4vw, 28px);
-    border-width: clamp(1.5px, 0.3vw, 2.5px);
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -299,22 +253,19 @@ canvas {
 .color-btn:nth-child(5) { background-color: #344e41; }
 
 /* Responsive design */
-@media screen and (max-width: 900px) {
-    .content-wrapper {
-        flex-direction: column;
-        gap: 20px;
-    }
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
+.timer-section, .controls-section {
+    flex: 1 1 100%; /* Full width by default */
+}
+
+@media (min-width: 600px) {
     .timer-section, .controls-section {
-        width: 90%;
-        max-width: 380px;
-        height: auto;
-        padding: 25px;
-    }
-
-    canvas {
-        width: 280px;
-        height: 280px;
+        flex: 1 1 45%; /* Half width on larger screens */
     }
 }
 
@@ -332,18 +283,9 @@ canvas {
         padding: 8px 16px;
     }
 
-    #startBtn, #resetBtn {
-        min-width: 100px;
-        padding: 12px 20px;
-    }
-
-    .color-presets {
-        padding: 5px;
-    }
-
     .color-btn {
-        width: clamp(18px, 3.5vw, 24px);
-        height: clamp(18px, 3.5vw, 24px);
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -402,7 +344,6 @@ body.color-5::after { background: linear-gradient(to right, #1f2d2540, #344e4140
 .mode-selector select:focus {
     border-color: var(--accent-color, rgba(255, 255, 255, 0.3));
 }
-
 body::before,
 body::after {
     content: '';
@@ -425,87 +366,4 @@ body::before {
 body::after {
     bottom: -300px;
     right: -200px;
-}
-
-/* Mobile-first base styles */
-* {
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    user-select: none;
-    -webkit-touch-callout: none;
-}
-
-body {
-    margin: 0;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    overflow: hidden;
-}
-
-/* Adjust container for mobile */
-.container {
-    padding: 15px;
-    height: 100vh;
-    height: -webkit-fill-available;
-}
-
-/* Mobile-optimized controls */
-.controls-section {
-    gap: 15px;
-    padding: 20px;
-}
-
-.time-inputs input {
-    font-size: 16px; /* Prevent iOS zoom on focus */
-    padding: 8px 16px;
-}
-
-/* Improve touch targets */
-#startBtn, #resetBtn, .color-btn {
-    min-height: 44px;
-    min-width: 44px;
-}
-
-.mode-selector select {
-    height: 44px;
-    font-size: 16px;
-}
-
-/* Add active states for touch */
-#startBtn:active, #resetBtn:active {
-    transform: scale(0.98);
-    transition: transform 0.1s;
-}
-
-.color-btn:active {
-    transform: scale(0.95);
-    transition: transform 0.1s;
-}
-
-/* Adjust canvas size for different screens */
-@media screen and (max-width: 480px) {
-    canvas {
-        width: 280px;
-        height: 280px;
-    }
-    
-    .main-title {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-    
-    .controls-section {
-        padding: 15px;
-    }
-}
-
-/* Handle notched devices */
-@supports (padding: max(0px)) {
-    .container {
-        padding-left: max(15px, env(safe-area-inset-left));
-        padding-right: max(15px, env(safe-area-inset-right));
-        padding-top: max(15px, env(safe-area-inset-top));
-        padding-bottom: max(15px, env(safe-area-inset-bottom));
-    }
 }
