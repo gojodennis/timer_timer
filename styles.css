@@ -269,22 +269,24 @@ body {
     border: none;
     background: var(--accent-color, rgba(0, 113, 227, 0.9));
     color: white;
-    padding: 10px 20px;
-    border-radius: 16px;
-    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
     letter-spacing: 0.5px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
 }
 
 #resetBtn {
-    background: var(--accent-color-transparent, rgba(0, 113, 227, 0.6));
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 #startBtn:hover, #resetBtn:hover {
-    transform: scale(1.03);
+    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -433,168 +435,351 @@ background: rgba(255, 255, 255, 0.1);
 
 /* Color buttons */
 .color-presets {
+    /* Color presets container */
+    .color-presets-container {
+        display: flex;
+        justify-content: center;
+        margin: 16px 0;
+    }
+    
+    .color-presets {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 8px;
+        display: inline-flex;
+        gap: 8px;
+    }
+    
+    .color-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    @media screen and (max-width: 480px) {
+        .color-presets {
+            padding: 6px;
+            gap: 6px;
+        }
+    
+        .color-btn {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .color-btn:hover {
+        transform: scale(1.1);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .color-btn.active {
+        border-color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.1);
+    }
+
+    /* Color scheme buttons */
+    .color-btn:nth-child(1) { background-color: #dad7cd; }
+    .color-btn:nth-child(2) { background-color: #a3b18a; }
+    .color-btn:nth-child(3) { background-color: #588157; }
+    .color-btn:nth-child(4) { background-color: #3a5a40; }
+    .color-btn:nth-child(5) { background-color: #344e41; }
+
+    /* Responsive design */
+    .color-section {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .color-presets {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 8px;
+        display: inline-flex;
+        gap: 8px;
+    }
+
+    @media screen and (max-width: 480px) {
+        .color-section {
+            margin-top: 16px;
+        }
+    }
+    .color-btn:hover {
+        transform: scale(1.1);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .color-btn.active {
+        border-color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.1);
+    }
+
+    /* Color scheme buttons */
+    .color-btn:nth-child(1) { background-color: #dad7cd; }
+    .color-btn:nth-child(2) { background-color: #a3b18a; }
+    .color-btn:nth-child(3) { background-color: #588157; }
+    .color-btn:nth-child(4) { background-color: #3a5a40; }
+    .color-btn:nth-child(5) { background-color: #344e41; }
+
+    /* Responsive design */
+    .content-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .side-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .color-section {
+        display: flex;
+        justify-content: center;
+    }
+
+    .color-presets {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 8px;
+        display: inline-flex;
+        gap: 8px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .content-wrapper {
+            flex-direction: column;
+        }
+        
+        .side-controls {
+            width: 100%;
+            flex-direction: column;
+        }
+    }
+
+    .timer-section, .controls-section {
+        flex: 1 1 100%; /* Full width by default */
+    }
+
+    @media (min-width: 600px) {
+        .timer-section, .controls-section {
+            flex: 1 1 45%; /* Half width on larger screens */
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .main-title {
+            font-size: 32px;
+        }
+
+        canvas {
+            width: 240px;
+            height: 240px;
+        }
+
+        .time-inputs input, .mode-selector select {
+            padding: 8px 16px;
+        }
+
+        .color-btn {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    /* Color scheme classes with dynamic gradients */
+    body.color-1 {
+        background: linear-gradient(125deg, #000000, #1a1a1a);
+    }
+    body.color-1::before { background: linear-gradient(to right, #dad7cd40, #c5c1b740); }
+    body.color-1::after { background: linear-gradient(to right, #b8b4ab40, #dad7cd40); }
+
+    body.color-2 {
+        background: linear-gradient(125deg, #000000, #1a1a1a);
+    }
+    body.color-2::before { background: linear-gradient(to right, #a3b18a40, #8a987340); }
+    body.color-2::after { background: linear-gradient(to right, #7d8a6840, #a3b18a40); }
+
+    body.color-3 {
+        background: linear-gradient(125deg, #000000, #1a1a1a);
+    }
+    body.color-3::before { background: linear-gradient(to right, #58815740, #4a6c4840); }
+    body.color-3::after { background: linear-gradient(to right, #3d573b40, #58815740); }
+
+    body.color-4 {
+        background: linear-gradient(125deg, #000000, #1a1a1a);
+    }
+    body.color-4::before { background: linear-gradient(to right, #3a5a4040, #2d463240); }
+    body.color-4::after { background: linear-gradient(to right, #24382740, #3a5a4040); }
+
+    body.color-5 {
+        background: linear-gradient(125deg, #000000, #1a1a1a);
+    }
+    body.color-5::before { background: linear-gradient(to right, #344e4140, #293d3340); }
+    body.color-5::after { background: linear-gradient(to right, #1f2d2540, #344e4140); }
+
+    /* Dynamic button styles */
+    #startBtn {
+        background: var(--accent-color, rgba(0, 113, 227, 0.9));
+        box-shadow: 0 0 20px var(--accent-color, rgba(0, 113, 227, 0.2));
+    }
+
+    #resetBtn {
+        background: var(--accent-color-transparent, rgba(0, 113, 227, 0.6));
+        box-shadow: 0 0 15px var(--accent-color-transparent, rgba(0, 113, 227, 0.1));
+    }
+
+    #startBtn:hover, #resetBtn:hover {
+        background: var(--accent-color-hover, rgba(0, 122, 255, 1));
+        transform: scale(1.03);
+    }
+
+    /* Mode selector accent */
+    .mode-selector select {
+        border-color: var(--accent-color-transparent, rgba(255, 255, 255, 0.2));
+    }
+
+    .mode-selector select:focus {
+        border-color: var(--accent-color, rgba(255, 255, 255, 0.3));
+    }
+    body::before,
+    body::after {
+        content: '';
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.15;
+        animation: float 20s infinite ease-in-out;
+        transition: background 0.5s ease;
+    }
+
+    body::before {
+        top: -300px;
+        left: -200px;
+        animation-delay: -5s;
+    }
+
+    body::after {
+        bottom: -300px;
+        right: -200px;
+    }
+    .color-btn {
+        position: relative;
+        z-index: 10; /* Ensure buttons are above other elements */
+    }
+    .color-btn {
+        pointer-events: auto; /* Ensure buttons are clickable */
+    }
+    .canvas-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    #timerCanvas {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+    .controls-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .input-group {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .color-presets {
+        display: flex;
+        gap: 10px;
+        padding: 8px;
+    }
+.frosted-container {
+    width: 100%;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.color-btn {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
+.minimal-select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 15px;
     transition: all 0.3s ease;
 }
 
-.color-btn:hover {
-    transform: scale(1.1);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.color-btn.active {
-    border-color: rgba(255, 255, 255, 0.8);
-    transform: scale(1.1);
-}
-
-/* Color scheme buttons */
-.color-btn:nth-child(1) { background-color: #dad7cd; }
-.color-btn:nth-child(2) { background-color: #a3b18a; }
-.color-btn:nth-child(3) { background-color: #588157; }
-.color-btn:nth-child(4) { background-color: #3a5a40; }
-.color-btn:nth-child(5) { background-color: #344e41; }
-
-/* Responsive design */
-.content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.timer-section, .controls-section {
-    flex: 1 1 100%; /* Full width by default */
-}
-
-@media (min-width: 600px) {
-    .timer-section, .controls-section {
-        flex: 1 1 45%; /* Half width on larger screens */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .main-title {
-        font-size: 32px;
-    }
-
-    canvas {
-        width: 240px;
-        height: 240px;
-    }
-
-    .time-inputs input, .mode-selector select {
-        padding: 8px 16px;
-    }
-
-    .color-btn {
-        width: 20px;
-        height: 20px;
-    }
-}
-
-/* Color scheme classes with dynamic gradients */
-body.color-1 {
-    background: linear-gradient(125deg, #000000, #1a1a1a);
-}
-body.color-1::before { background: linear-gradient(to right, #dad7cd40, #c5c1b740); }
-body.color-1::after { background: linear-gradient(to right, #b8b4ab40, #dad7cd40); }
-
-body.color-2 {
-    background: linear-gradient(125deg, #000000, #1a1a1a);
-}
-body.color-2::before { background: linear-gradient(to right, #a3b18a40, #8a987340); }
-body.color-2::after { background: linear-gradient(to right, #7d8a6840, #a3b18a40); }
-
-body.color-3 {
-    background: linear-gradient(125deg, #000000, #1a1a1a);
-}
-body.color-3::before { background: linear-gradient(to right, #58815740, #4a6c4840); }
-body.color-3::after { background: linear-gradient(to right, #3d573b40, #58815740); }
-
-body.color-4 {
-    background: linear-gradient(125deg, #000000, #1a1a1a);
-}
-body.color-4::before { background: linear-gradient(to right, #3a5a4040, #2d463240); }
-body.color-4::after { background: linear-gradient(to right, #24382740, #3a5a4040); }
-
-body.color-5 {
-    background: linear-gradient(125deg, #000000, #1a1a1a);
-}
-body.color-5::before { background: linear-gradient(to right, #344e4140, #293d3340); }
-body.color-5::after { background: linear-gradient(to right, #1f2d2540, #344e4140); }
-
-/* Dynamic button styles */
-#startBtn {
-    background: var(--accent-color, rgba(0, 113, 227, 0.9));
-    box-shadow: 0 0 20px var(--accent-color, rgba(0, 113, 227, 0.2));
-}
-
-#resetBtn {
-    background: var(--accent-color-transparent, rgba(0, 113, 227, 0.6));
-    box-shadow: 0 0 15px var(--accent-color-transparent, rgba(0, 113, 227, 0.1));
-}
-
-#startBtn:hover, #resetBtn:hover {
-    background: var(--accent-color-hover, rgba(0, 122, 255, 1));
-    transform: scale(1.03);
-}
-
-/* Mode selector accent */
-.mode-selector select {
-    border-color: var(--accent-color-transparent, rgba(255, 255, 255, 0.2));
-}
-
-.mode-selector select:focus {
-    border-color: var(--accent-color, rgba(255, 255, 255, 0.3));
-}
-body::before,
-body::after {
-    content: '';
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.15;
-    animation: float 20s infinite ease-in-out;
-    transition: background 0.5s ease;
-}
-
-body::before {
-    top: -300px;
-    left: -200px;
-    animation-delay: -5s;
-}
-
-body::after {
-    bottom: -300px;
-    right: -200px;
-}
-.color-btn {
-    position: relative;
-    z-index: 10; /* Ensure buttons are above other elements */
-}
-.color-btn {
-    pointer-events: auto; /* Ensure buttons are clickable */
-}
-canvas {
+.time-inputs {
     width: 100%;
-    max-width: 300px;
-    height: auto;
-    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-@media screen and (max-width: 480px) {
-    canvas {
-        max-width: 240px;
-    }
+.minimal-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.minimal-select:focus, .minimal-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.timer-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }

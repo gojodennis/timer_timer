@@ -9,51 +9,53 @@
 <body>
     <div class="container">
         <h1 class="main-title">Time Timer</h1>
+        
         <div class="content-wrapper">
+            <!-- Timer Display Section -->
             <div class="timer-section">
                 <div class="canvas-container">
                     <canvas id="timerCanvas"></canvas>
                 </div>
-                <div class="timer-controls">
-                    <div class="time-display-container">
-                        <div class="time-display">00:00</div>
-                    </div>
-                    <div class="button-container">
-                        <button id="startBtn">Start</button>
-                        <button id="resetBtn">Reset</button>
-                    </div>
+                
+                <div class="time-display">00:00</div>
+                
+                <div class="button-container">
+                    <button id="startBtn" class="minimal-btn">Start</button>
+                    <button id="resetBtn" class="minimal-btn">Reset</button>
                 </div>
             </div>
             
-            <div class="controls-section">
-                <div class="input-group">
-                    <div class="mode-selector">
-                        <select id="timerMode">
+            <!-- Controls Section -->
+            <div class="controls-wrapper">
+                <div class="controls-section">
+                    <div class="frosted-container">
+                        <select id="timerMode" class="minimal-select">
                             <option value="standard">Standard (1-60 min)</option>
                             <option value="hours">Long Timer (Hours)</option>
                             <option value="pomodoro">Pomodoro</option>
                         </select>
+                        
+                        <div class="time-inputs">
+                            <div class="standard-input">
+                                <input type="number" id="minutes" class="minimal-input" min="1" max="60" value="25">
+                            </div>
+                            <div class="hours-input" style="display: none;">
+                                <input type="number" id="hours" class="minimal-input" min="1" max="99" value="1">
+                            </div>
+                            <div class="pomodoro-input" style="display: none;">
+                                <input type="number" id="pomoWork" class="minimal-input" min="1" max="60" value="25" placeholder="Work">
+                                <input type="number" id="pomoBreak" class="minimal-input" min="1" max="60" value="5" placeholder="Break">
+                            </div>
+                        </div>
                     </div>
-                    <div class="time-inputs">
-                        <div class="standard-input">
-                            <input type="number" id="minutes" min="1" max="60" value="25">
-                        </div>
-                        <div class="hours-input" style="display: none;">
-                            <input type="number" id="hours" min="1" max="99" value="1">
-                        </div>
-                        <div class="pomodoro-input" style="display: none;">
-                            <input type="number" id="pomoWork" min="1" max="60" value="25" placeholder="Work">
-                            <input type="number" id="pomoBreak" min="1" max="60" value="5" placeholder="Break">
-                        </div>
+                    
+                    <div class="color-presets">
+                        <button class="color-btn" data-color="#dad7cd"></button>
+                        <button class="color-btn" data-color="#a3b18a"></button>
+                        <button class="color-btn" data-color="#588157"></button>
+                        <button class="color-btn" data-color="#3a5a40"></button>
+                        <button class="color-btn" data-color="#344e41"></button>
                     </div>
-                </div>
-                
-                <div class="color-presets">
-                    <button class="color-btn" data-color="#dad7cd"></button>
-                    <button class="color-btn" data-color="#a3b18a"></button>
-                    <button class="color-btn" data-color="#588157"></button>
-                    <button class="color-btn" data-color="#3a5a40"></button>
-                    <button class="color-btn" data-color="#344e41"></button>
                 </div>
             </div>
         </div>
